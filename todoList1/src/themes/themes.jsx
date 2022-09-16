@@ -7,5 +7,9 @@ const themes = {
     foreground: "#ffffff",
     background: "#222222",
   },
+  yellow: {
+    foreground: "#ff00aa",
+    background: "#3c05f0",
+  },
 };
 export default themes;

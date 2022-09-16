@@ -1,10 +1,18 @@
 import React from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
 
 const CreateTodo = ({ addTodo }) => {
   const [todo, setTodo] = useLocalStorage("todo", "");
+  const { theme } = useContext(ThemeContext);
 
+  const style = {
+    backgroundColor: theme.background,
+    color: theme.foreground,
+    border: "1px solid",
+    borderRadius: 10,
+  };
   const handleChange = (e) => {
     setTodo(e.target.value);
   };
@@ -16,13 +24,13 @@ const CreateTodo = ({ addTodo }) => {
 
   return (
     <>
-      <div>CreateTodo</div>
       <form onSubmit={handleSubmit}>
         <input
+          style={style}
           type="text"
           id="name"
           name="name"
-          placeholder="Enter a new Todo"
+          placeholder="Create to do"
           value={todo}
           required
           minLength="4"

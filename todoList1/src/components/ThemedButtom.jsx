@@ -15,11 +15,24 @@ const ThemedButtom = (props) => {
 
   const updateLightTheme = () => {
     console.log(theme);
-    if (theme.background === "#eeeeee") {
-      updateTheme(themes.dark);
-    } else {
-      updateTheme(themes.light);
+    switch (theme.background) {
+      case "#eeeeee":
+        updateTheme(themes.dark);
+        break;
+      case "#222222":
+        updateTheme(themes.yellow);
+        break;
+      default:
+        updateTheme(themes.light);
+        break;
     }
+    // if (theme.background === "#eeeeee") {
+    //   updateTheme(themes.dark);
+    // } else if (theme.background === "#000000") {
+    //   updateTheme(themes.yellow);
+    // } else {
+    //   updateTheme(themes.light);
+    // }
   };
 
   return <button onClick={updateLightTheme} {...props} style={style} />;
