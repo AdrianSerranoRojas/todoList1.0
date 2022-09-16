@@ -1,19 +1,15 @@
 import { useState } from "react";
 import "./App.css";
 import CreateTodo from "./components/CreateTodo";
+import ThemedButtom from "./components/ThemedButtom";
 import TodoList from "./components/TodoList";
 
-import { useSetLocalStorage } from "./hooks/useSetLocalStorage";
-import loadLocalStorageItems from "./utils/loadLocalStorageItems";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 function App() {
-  const [todoList, setTodoList] = useState(
-    loadLocalStorageItems("todoList", [])
-  );
+  const [todoList, setTodoList] = useLocalStorage("todoList", []);
 
-  useSetLocalStorage("todoList", todoList);
-
-  const handleTodoList = (data) => {
+  const addTodo = (data) => {
     console.log("pre todoList", data);
     const newTodo = {
       title: data,
@@ -32,7 +28,8 @@ function App() {
   return (
     <div className="App">
       <h1>Todo List</h1>
-      <CreateTodo handleTodoList={handleTodoList} />
+      <ThemedButtom />
+      <CreateTodo addTodo={addTodo} />
       <TodoList todoList={todoList} deleteTodo={deleteTodo} />
     </div>
   );

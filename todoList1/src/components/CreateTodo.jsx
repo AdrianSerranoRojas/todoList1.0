@@ -1,30 +1,19 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useSetLocalStorage } from "../hooks/useSetLocalStorage";
-import loadLocalStorageItems from "../utils/loadLocalStorageItems";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
-const CreateTodo = ({ handleTodoList }) => {
-  // const [todo, setTodo] = useState(() => {
-  //   const saved = localStorage.getItem("todo");
-  //   const initialValue = JSON.parse(saved);
-  //   return initialValue || "";
-  // });
-  const [todo, setTodo] = useState(loadLocalStorageItems("todo", ""));
 
-  useSetLocalStorage("todo", todo);
+const CreateTodo = ({ addTodo }) => {
+  const [todo, setTodo] = useLocalStorage("todo", "");
 
   const handleChange = (e) => {
     setTodo(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleTodoList(todo);
+    addTodo(todo);
     setTodo("");
   };
-  // useEffect(() => {
-  //   localStorage.setItem("todo", JSON.stringify(todo));
-  // }, [todo]);
+
   return (
     <>
       <div>CreateTodo</div>
