@@ -1,12 +1,23 @@
 import { useState } from "react";
+import { useContext } from "react";
 import "./App.css";
 import CreateTodo from "./components/CreateTodo";
 import ThemedButtom from "./components/ThemedButtom";
 import TodoList from "./components/TodoList";
 
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import ThemeContext from "./context/ThemeContext";
 
 function App() {
+
+    const { theme } = useContext(ThemeContext);
+  const style = {
+    backgroundColor: theme.background,
+    color: theme.foreground,
+    border: "1px solid",
+    borderRadius: 10,
+  };
+
   const [todoList, setTodoList] = useLocalStorage("todoList", []);
 
   const addTodo = (data) => {
@@ -26,9 +37,9 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App" style={style}>
       <h1>Todo List</h1>
-      <ThemedButtom />
+      <ThemedButtom>Toggle Theme</ThemedButtom>
       <CreateTodo addTodo={addTodo} />
       <TodoList todoList={todoList} deleteTodo={deleteTodo} />
     </div>
