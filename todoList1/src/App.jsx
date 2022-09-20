@@ -9,8 +9,7 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import ThemeContext from "./context/ThemeContext";
 
 function App() {
-
-    const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const style = {
     backgroundColor: theme.background,
     color: theme.foreground,

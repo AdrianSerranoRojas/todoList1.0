@@ -39,7 +39,6 @@ const CreateTodo = ({ addTodo }) => {
           onChange={handleChange}
         />
       </form>
-      <h2>{todo}</h2>
     </>
   );
 };
